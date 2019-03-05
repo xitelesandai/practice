@@ -83,37 +83,151 @@
 // endregion 闭包函数
 
 // region 闭包函数--bindTo()
-class App
-{
-    protected $routes = array();
-    protected $responseStatus = '200ok';
-    public $responseContentType = 'text/html';
-    protected $responseBody = 'hello world';
+//class App
+//{
+//    protected $routes = array();
+//    protected $responseStatus = '200ok';
+//    public $responseContentType = 'text/html';
+//    protected $responseBody = 'hello world';
+//
+//    public function addRoute($routePath, $routeCallback)
+//    {
+//        $this->routes[$routePath] = $routeCallback->bindTo($this, __CLASS__);
+//    }
+//
+//    public function dispatch($currentPath)
+//    {
+//        foreach ($this->routes as $routePath => $callback) {
+//            if ($routePath === $currentPath) {
+//                $callback();
+//            }
+//        }
+//
+//        header('HTTP/1.1 ' . $this->responseStatus);
+//        header('Content-type: ' . $this->responseContentType);
+//        header('Content-length: ' . $this->responseContentType);
+//        echo $this->responseBody;
+//    }
+//}
+//
+//$app = new App();
+//$app->addRoute('/users/josh', function () {
+//    $this->responseContentType = 'application/json;charset=utf8';
+//    $this->responseBody = '{"name":"josh"}';
+//});
+//$app->dispatch('/users/josh');
+// endregion 闭包函数--bindTo()
 
-    public function addRoute($routePath, $routeCallback)
-    {
-        $this->routes[$routePath] = $routeCallback->bindTo($this, __CLASS__);
-    }
+//region IteratorAggregate类
+//class myIterator implements IteratorAggregate
+//{
+//    public $file_path = 'C:\Users\Administrator\Desktop\sql.txt';
+//    public $fp = array();
+//
+//    public function __construct()
+//    {
+//        $fp = fopen($this->file_path,'r');
+//        while (!feof($fp)){
+//            array_push($this->fp,fgets($fp));
+//        }
+//    }
+//
+//    public function getIterator()
+//    {
+//        return new ArrayIterator($this->fp);
+//    }
+//}
+//
+//$obj = new myIterator();
+//foreach ($obj as $key=>$value) {
+//    if (strpos($value,'1990-01-01')){
+//        echo $key.PHP_EOL;
+//    }
+//}
+//endregion IteratorAggregate类
 
-    public function dispatch($currentPath)
-    {
-        foreach ($this->routes as $routePath => $callback) {
-            if ($routePath === $currentPath) {
-                $callback();
+
+// region 分表
+//for ($i = 0; $i < 100; $i++) {
+////echo "CREATE TABLE db2.members{$i} LIKE db1.members<br>";
+//    echo "INSERT INTO members{$i} SELECT * FROM members WHERE mid%100={$i}".PHP_EOL;
+//}
+// endregion 分表
+
+
+// region 防sql注入方法
+//echo strip_tags("Hello <b>world!</b>");
+///**
+// * 函数名称：post_check()
+// * 函数作用：对提交的编辑内容进行处理
+// * 参　　数：$post: 要提交的内容
+// * 返 回 值：$post: 返回过滤后的内容
+// */
+//function post_check($post){
+//    if(!get_magic_quotes_gpc()){// 判断magic_quotes_gpc是否为打开
+//        $post = addslashes($post);// 进行magic_quotes_gpc没有打开的情况对提交数据的过滤
+//    }
+//    $post = str_replace("_","\_",$post);// 把 '_'过滤掉
+//    $post = str_replace("%","\%",$post);// 把 '%'过滤掉
+//    $post = nl2br($post);// 回车转换
+//    $post =htmlspecialchars($post);// html标记转换
+//
+//    return $post;
+//}
+//
+//echo post_check('select * from t_order');
+// endregion 防sql注入方法
+
+//region 时间类
+//$datetime = new  DateTime();
+//$date_interval = DateInterval::createFromDateString('-1 Month');
+//$date_period = new DatePeriod($datetime, $date_interval, 3);
+//foreach ($date_period as $date){
+//    echo $date->format('Y-m-d'),PHP_EOL;
+//}
+//endregion 时间类
+
+//region 01背包
+// f[i,j] = Max{ f[i-1,j-Wi]+Pi( j >= Wi ),  f[i-1,j] }
+//背包可以装最大的重量
+$w = 10;
+//这里有四件物品,每件物品的重量
+$dx = array(2, 2, 6, 5, 4);
+//每件物品的价值
+$val = array(6, 3, 5, 4, 6);
+//定义一个数组
+$maxValue = array();
+//初始化
+for ($i = 0; $i <= 10; $i++) {
+    $maxValue[0][$i] = 0;
+}
+for ($j = 0; $j <= 5; $j++) {
+    $maxValue[$j][0] = 0;
+}
+//Max{ f[i-1,j-Wi]+Pi( j >= Wi ),  f[i-1,j] }
+for ($j = 1; $j <= 5; $j++) {
+    for ($i = 1; $i <= 10; $i++) {
+        $maxValue[$j][$i] = $maxValue[$j - 1][$i];
+        //不大于最大的w=10
+        if ($dx[$j - 1] <= $w) {
+            //这种情况是防止减去自身的重量后，成了负数
+            if (!isset($maxValue[$j - 1][$i - $dx[$j - 1]])) continue;
+            //f[i-1,j-Wi]+Pi( j >= Wi )
+            $tmp = $maxValue[$j - 1][$i - $dx[$j - 1]] + $val[$j - 1];
+            //Max{ f[i-1,j-Wi]+Pi( j >= Wi ),  f[i-1,j] } => 进行比较
+            if ($tmp > $maxValue[$j][$i]) {
+                $maxValue[$j][$i] = $tmp;
             }
         }
-
-        header('HTTP/1.1 ' . $this->responseStatus);
-        header('Content-type: ' . $this->responseContentType);
-        header('Content-length: ' . $this->responseContentType);
-        echo $this->responseBody;
     }
 }
-
-$app = new App();
-$app->addRoute('/users/josh', function () {
-    $this->responseContentType = 'application/json;charset=utf8';
-    $this->responseBody = '{"name":"josh"}';
-});
-$app->dispatch('/users/josh');
-// endregion 闭包函数--bindTo()
+//打印这个数组,输出最右角的值是可以最大价值的
+for ($j = 1; $j <= 5; $j++) {
+    for ($i = 1; $i <= 10; $i++) {
+        if ($maxValue[$j][$i] < 10)
+            echo " " . $maxValue[$j][$i] . " ";
+        else echo $maxValue[$j][$i] . " ";
+    }
+    echo "<br>";
+}
+//endregion 01背包
