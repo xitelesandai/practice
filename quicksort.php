@@ -188,46 +188,56 @@
 //endregion 时间类
 
 //region 01背包
-// f[i,j] = Max{ f[i-1,j-Wi]+Pi( j >= Wi ),  f[i-1,j] }
-//背包可以装最大的重量
-$w = 10;
-//这里有四件物品,每件物品的重量
-$dx = array(2, 2, 6, 5, 4);
-//每件物品的价值
-$val = array(6, 3, 5, 4, 6);
-//定义一个数组
-$maxValue = array();
-//初始化
-for ($i = 0; $i <= 10; $i++) {
-    $maxValue[0][$i] = 0;
-}
-for ($j = 0; $j <= 5; $j++) {
-    $maxValue[$j][0] = 0;
-}
-//Max{ f[i-1,j-Wi]+Pi( j >= Wi ),  f[i-1,j] }
-for ($j = 1; $j <= 5; $j++) {
-    for ($i = 1; $i <= 10; $i++) {
-        $maxValue[$j][$i] = $maxValue[$j - 1][$i];
-        //不大于最大的w=10
-        if ($dx[$j - 1] <= $w) {
-            //这种情况是防止减去自身的重量后，成了负数
-            if (!isset($maxValue[$j - 1][$i - $dx[$j - 1]])) continue;
-            //f[i-1,j-Wi]+Pi( j >= Wi )
-            $tmp = $maxValue[$j - 1][$i - $dx[$j - 1]] + $val[$j - 1];
-            //Max{ f[i-1,j-Wi]+Pi( j >= Wi ),  f[i-1,j] } => 进行比较
-            if ($tmp > $maxValue[$j][$i]) {
-                $maxValue[$j][$i] = $tmp;
-            }
-        }
-    }
-}
-//打印这个数组,输出最右角的值是可以最大价值的
-for ($j = 1; $j <= 5; $j++) {
-    for ($i = 1; $i <= 10; $i++) {
-        if ($maxValue[$j][$i] < 10)
-            echo " " . $maxValue[$j][$i] . " ";
-        else echo $maxValue[$j][$i] . " ";
-    }
-    echo "<br>";
-}
+//// f[i,j] = Max{ f[i-1,j-Wi]+Pi( j >= Wi ),  f[i-1,j] }
+////背包可以装最大的重量
+//$w = 10;
+////这里有四件物品,每件物品的重量
+//$dx = array(2, 2, 6, 5, 4);
+////每件物品的价值
+//$val = array(6, 3, 5, 4, 6);
+////定义一个数组
+//$maxValue = array();
+////初始化
+//for ($i = 0; $i <= 10; $i++) {
+//    $maxValue[0][$i] = 0;
+//}
+//for ($j = 0; $j <= 5; $j++) {
+//    $maxValue[$j][0] = 0;
+//}
+////Max{ f[i-1,j-Wi]+Pi( j >= Wi ),  f[i-1,j] }
+//for ($j = 1; $j <= 5; $j++) {
+//    for ($i = 1; $i <= 10; $i++) {
+//        $maxValue[$j][$i] = $maxValue[$j - 1][$i];
+//        //不大于最大的w=10
+//        if ($dx[$j - 1] <= $w) {
+//            //这种情况是防止减去自身的重量后，成了负数
+//            if (!isset($maxValue[$j - 1][$i - $dx[$j - 1]])) continue;
+//            //f[i-1,j-Wi]+Pi( j >= Wi )
+//            $tmp = $maxValue[$j - 1][$i - $dx[$j - 1]] + $val[$j - 1];
+//            //Max{ f[i-1,j-Wi]+Pi( j >= Wi ),  f[i-1,j] } => 进行比较
+//            if ($tmp > $maxValue[$j][$i]) {
+//                $maxValue[$j][$i] = $tmp;
+//            }
+//        }
+//    }
+//}
+////打印这个数组,输出最右角的值是可以最大价值的
+//for ($j = 1; $j <= 5; $j++) {
+//    for ($i = 1; $i <= 10; $i++) {
+//        if ($maxValue[$j][$i] < 10)
+//            echo " " . $maxValue[$j][$i] . " ";
+//        else echo $maxValue[$j][$i] . " ";
+//    }
+//    echo "<br>";
+//}
 //endregion 01背包
+
+//region 时间类
+$start_time = new DateTime();
+$interval = new DateInterval('P1W');
+$period = new DatePeriod($start_time, $interval, 3, DatePeriod::EXCLUDE_START_DATE);
+foreach ($period as $nextDateTime) {
+    echo $nextDateTime->format('Y-m-d H:i:s'), PHP_EOL;
+}
+//}
+//endregion 时间类
