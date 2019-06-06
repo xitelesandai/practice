@@ -233,11 +233,43 @@
 //endregion 01背包
 
 //region 时间类
-$start_time = new DateTime();
-$interval = new DateInterval('P1W');
-$period = new DatePeriod($start_time, $interval, 3, DatePeriod::EXCLUDE_START_DATE);
-foreach ($period as $nextDateTime) {
-    echo $nextDateTime->format('Y-m-d H:i:s'), PHP_EOL;
-}
+//$start_time = new DateTime();
+//$interval = new DateInterval('P1W');
+//$period = new DatePeriod($start_time, $interval, 3, DatePeriod::EXCLUDE_START_DATE);
+//foreach ($period as $nextDateTime) {
+//    echo $nextDateTime->format('Y-m-d H:i:s'), PHP_EOL;
+//}
 //}
 //endregion 时间类
+
+//region折半查找
+//$target = 5;
+//$data = [1, 3, 5, 6, 9, 10, 11, 13];
+//function halfSearch($target, $data)
+//{
+//    $length = count($data);
+//    if ($target == $data[intval($length / 2)]) {
+//        return intval($length / 2);
+//    } else {
+//        if ($target > $data[intval($length / 2)]) {
+//            $tmp_data = array_slice($data, intval($length / 2) + 1);
+//        }
+//        if ($target < $data[intval($length / 2)]) {
+//            $tmp_data = array_slice($data, 0, intval($length / 2));
+//        }
+//        return halfSearch($target, $tmp_data);
+//    }
+//}
+//
+//$res = halfSearch($target, $data);
+//echo  $res;
+//endregion折半查找
+
+$arr = ['james','curry'];
+$main_str="";
+foreach ($arr as $str){
+    $main_str .= "'".$str."',";
+}
+//$str = substr($main_str,0,strlen($main_str)-1);
+$str = 'xiongjianhan';
+var_dump(21-6*pow(26,0.3)+2.6);

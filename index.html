@@ -1,0 +1,25 @@
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<h1>hello world</h1>
+<div id="app1">
+    <p>{{ message }}</p>
+    <button @click="fnChangeMsg">click please!!!!</button>
+</div>
+</body>
+</html>
+<script>
+    window.onload = function(){
+       var vm = new Vue({
+            el:'#app1',
+            data:{message:'hello world!'},
+            methods:{
+                fnChangeMsg:function(){
+                    this.message = 'hello Vue.js!';
+                }
+            }
+        });
+    }
+</script>
