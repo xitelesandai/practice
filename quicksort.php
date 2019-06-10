@@ -265,11 +265,11 @@
 //echo  $res;
 //endregion折半查找
 
-$arr = ['james','curry'];
-$main_str="";
-foreach ($arr as $str){
-    $main_str .= "'".$str."',";
+function firstName($first_name){
+    return function ($last_name) use ($first_name){
+        return sprintf('my name is %s,%s',$first_name,$last_name);
+    };
 }
-//$str = substr($main_str,0,strlen($main_str)-1);
-$str = 'xiongjianhan';
-var_dump(21-6*pow(26,0.3)+2.6);
+
+$name = firstName('xiong');
+echo $name('jianhan');
