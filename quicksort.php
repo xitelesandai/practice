@@ -265,11 +265,7 @@
 //echo  $res;
 //endregion折半查找
 
-function firstName($first_name){
-    return function ($last_name) use ($first_name){
-        return sprintf('my name is %s,%s',$first_name,$last_name);
-    };
+$dir = new DirectoryIterator('D:');
+foreach ($dir as $file){
+    echo $file->getFilename(),PHP_EOL;
 }
-
-$name = firstName('xiong');
-echo $name('jianhan');

@@ -1,6 +1,7 @@
 # 数据结构：
 # 1、字符串
 # 2、列表
+import sys
 
 # 列表
 # 函数：len(列表)--计算列表长度
@@ -9,8 +10,19 @@
 # 函数：remove(位置)--列表指定位置删除元素
 # 函数：clear()--清空列表元素
 # 函数：sorted(列表，排序方式)--sorted函数返回列表排序后的拷贝不会修改传入的列表
-fruits = ['grape', 'apple', 'strawberry', 'waxberry']
-fruits += ['pitaya', 'pear', 'mango']
-# 循环遍历列表元素
-fruit3 = fruits[:]
-print(fruit3[1])
+
+# 元组
+# 定义元组
+t = ('熊健涵', 26, True, '重庆')
+print(t)
+
+# 集合
+# 定义集合
+# 函数：add(值)--集合末尾追加元素
+# 函数：update(值)--集合末尾批量追加元素
+# 函数：discard(值)--集合按照值删除元素
+# 函数：remove(值)--集合按照值删除元素(没有值时会报错)
+set3 = set((1, 2, 3, 3, 2, 1))
+print(set3)
+print(set3.pop())
+print(set3)
