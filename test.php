@@ -12,6 +12,7 @@ class test
     public $arr = [1, 2, 3, 4, 5];
     private $name = 'james';
     public $res;
+    public $test;
 
     public static function run()
     {
@@ -50,4 +51,3 @@ class test
 }
 
 $test = new test();
-echo $test;

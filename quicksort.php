@@ -265,7 +265,5 @@
 //echo  $res;
 //endregion折半查找
 
-$dir = new DirectoryIterator('D:');
-foreach ($dir as $file){
-    echo $file->getFilename(),PHP_EOL;
-}
+$str = '             1111  ';
+var_dump(empty(trim($str)));
