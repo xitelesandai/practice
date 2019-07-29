@@ -264,6 +264,6 @@
 //$res = halfSearch($target, $data);
 //echo  $res;
 //endregion折半查找
-
-$str = '             1111  ';
-var_dump(empty(trim($str)));
+$var = 0;
+$month = 10;
+echo   date("Y-m-d", strtotime("+$month months", strtotime("now")));
