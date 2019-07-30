@@ -264,6 +264,6 @@
 //$res = halfSearch($target, $data);
 //echo  $res;
 //endregion折半查找
-$var = 0;
-$month = 10;
-echo   date("Y-m-d", strtotime("+$month months", strtotime("now")));
+$str = "Who's Bill Gates?";
+echo $str . " This is not safe in a database query.<br>";
+echo addslashes($str) . " This is safe in a database query.";
